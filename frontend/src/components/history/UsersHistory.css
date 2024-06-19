@@ -1,0 +1,36 @@
+.filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.filters > div,
+.filters > input {
+    margin-right: 10px;
+}
+
+.label-text {
+    margin-right: 5px;
+}
+
+.user-count {
+    margin-left: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.center-align {
+    text-align: center;
+}

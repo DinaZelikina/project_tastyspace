@@ -1,0 +1,49 @@
+import RoleBasedButtons from './RoleBasedButtons';
+import CreateMenuQuestions from './menu/CreateMenuQuestions';
+import Homepage from './homepage/Homepage';
+import About from './about/About';
+import ContactUs from './contact/ContactUs';
+import { ActionButton } from './ActionButtons';
+
+type GuestOptionsProps = {
+  showLoginForm: () => void;
+  showRegistrationForm?: (role: string) => void;
+  setCurrentComponent: (component: JSX.Element | null) => void; 
+  setActionButtons: (buttons: ActionButton[]) => void;
+};
+
+export default function GuestOptions({ showLoginForm, setCurrentComponent, setActionButtons }: GuestOptionsProps) {
+  const handleCreateMenu = () => {
+    setCurrentComponent(
+      <CreateMenuQuestions 
+        onClose={() => setCurrentComponent(null)} 
+        setCurrentComponent={setCurrentComponent} 
+        updateActionButtons={setActionButtons} 
+        key={Date.now()} 
+      />
+    );
+    setActionButtons([]);
+  };
+  
+  const actions = {
+    createMenu: handleCreateMenu,
+    showHelp: () => {
+      setCurrentComponent(<About />);
+      setActionButtons([]); 
+    },
+    showContact: () => {
+      setCurrentComponent(<ContactUs />); 
+      setActionButtons([]); 
+    },
+    showHomepage: () => {
+      setCurrentComponent(<Homepage />);
+      setActionButtons([]);
+    }
+  };
+
+  return (
+    <>
+      <RoleBasedButtons userRole="guest" actions={actions} />
+    </>
+  );
+}

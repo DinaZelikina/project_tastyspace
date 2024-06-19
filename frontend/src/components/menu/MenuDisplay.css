@@ -1,0 +1,21 @@
+.menu-display-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1200px;
+    margin-bottom: 20px;
+}
+
+.modal-90w {
+    max-width: 900px !important;
+}
+
+.custom-modal-body {
+    padding: 0 !important; 
+}
+
+.recipe-details {
+    width: 100% !important; 
+    max-width: 900px !important;
+}
