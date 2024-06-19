@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TASTYSPACE
 
 ## Description
@@ -73,3 +74,6 @@ The default admin login credentials are:
     ```bash
     npm run test
     ```
+=======
+# project_tastyspace
+>>>>>>> a7cfc241a3f60265474afb35568f38b67b5ec5d6
