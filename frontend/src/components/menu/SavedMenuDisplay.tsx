@@ -31,7 +31,7 @@ type SavedMenuDisplayProps = {
     updateActionButtons: (buttons: ActionButton[]) => void;
 };
 
-// Display recipe list of users saved menu
+// Display selected recipe from users saved menu
 export function SavedMenuDisplay({ menu, onBackToSaved, setCurrentComponent, updateActionButtons }: SavedMenuDisplayProps) {
     const [selectedRecipeId, setSelectedRecipeId] = useState<number | null>(null);
     const [showModal, setShowModal] = useState(false);
@@ -72,7 +72,7 @@ export function SavedMenuDisplay({ menu, onBackToSaved, setCurrentComponent, upd
                         />
                     )
                 }
-                updateActionButtons={updateActionButtons} // Передаем updateActionButtons
+                updateActionButtons={updateActionButtons} 
             />
         );
     };
@@ -104,8 +104,8 @@ export function SavedMenuDisplay({ menu, onBackToSaved, setCurrentComponent, upd
 
     return (
         <>
-            <h2>{menu.title}</h2>
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px' }}>
+            <h3 className="text-center">{menu.title}</h3>
+            <div className="menu-display-grid">
                 {menu.recipes.map((recipe: RecipeApiResponse, index: number) => (
                     <RecipeCard
                         key={index}

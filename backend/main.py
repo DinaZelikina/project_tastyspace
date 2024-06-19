@@ -20,13 +20,14 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 relative_path = os.getenv('FLASK_UPLOAD_FOLDER', 'default/path') 
 app.config['UPLOAD_FOLDER'] = os.path.join(BASE_DIR, relative_path) 
 
-# Initialize the empty database
-init_empty_db()
-
 app.register_blueprint(auth_bp)
 app.register_blueprint(recipes_bp)
 app.register_blueprint(menu_bp)
 app.register_blueprint(admin_bp)
+
+@app.before_first_request
+def initialize_database():
+    init_empty_db()
 
 if __name__ == "__main__":
     app.run()

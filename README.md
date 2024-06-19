@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # TASTYSPACE
 
 ## Description
@@ -13,7 +13,7 @@ TASTYSPACE is a recipe management and menu creation application that allows user
 - **Shopping List Generation:** Creates a detailed shopping list based on selected recipes, including ingredient quantities and categories for easier shopping.
 - **User Interface:** Intuitive interface using React and Bootstrap.
 
-## Installation
+## Usage
 
 Follow these steps to run the project locally:
 
@@ -36,7 +36,12 @@ Follow these steps to run the project locally:
     cp example.env .env
     ```
 
-4. If you need to run the backend tests, first install the test/dev dependencies:
+4. After that, you can run the backend server (inside the backend directory):
+    ```bash
+    flask run
+    ```
+
+5. If you need to run the backend tests, first install the test/dev dependencies:
     ```bash
     pip install -r requirements-dev.txt
     pytest
@@ -53,7 +58,6 @@ Enter the postgres password when prompted.
 The default admin login credentials are:
 - **Username:** admin
 - **Password:** admin
-
 
 ### Frontend (React / Vite / TypeScript)
 
@@ -75,5 +79,3 @@ The default admin login credentials are:
     npm run test
     ```
 =======
-# project_tastyspace
->>>>>>> a7cfc241a3f60265474afb35568f38b67b5ec5d6
