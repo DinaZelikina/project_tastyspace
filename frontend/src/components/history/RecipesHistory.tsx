@@ -3,7 +3,7 @@ import { FaRegTrashAlt, FaRegStickyNote } from 'react-icons/fa';
 import { Modal } from 'react-bootstrap';
 import RecipeDetails from '../menu/RecipeDetails';
 import './RecipesHistory.css';
-import { BACKEND_URL } from '../../App'; 
+import { BACKEND_URL } from '../../config'; 
 
 type Recipe = {
     id: number;

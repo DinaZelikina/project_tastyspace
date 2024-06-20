@@ -77,7 +77,7 @@ export default function Moderation({
 
     useEffect(() => {
         setEditedRecipe(recipe);
-    }, [recipe]);
+    }, [recipe]); 
 
     // Update action buttons based on the current state of the form
     useEffect(() => {

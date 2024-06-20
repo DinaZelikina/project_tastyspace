@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import './AddRecipeForm.css';
-import { BACKEND_URL } from '../../App';
-
+import { BACKEND_URL } from '../../config';
 
 type Ingredient = {
     name: string;
@@ -215,7 +214,7 @@ export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
                 console.error('Error:', error);
             });
     };
-
+ 
     return (
         <div>
             <h3>Add a New Recipe</h3>

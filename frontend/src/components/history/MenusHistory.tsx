@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaRegListAlt } from 'react-icons/fa';
 import { Modal } from 'react-bootstrap';
 import './MenusHistory.css';
-import { BACKEND_URL } from '../../App'; 
+import { BACKEND_URL } from '../../config'; 
 
 type Menu = {
     id: number;

@@ -3,7 +3,7 @@ import SavedMenuCard from './SavedMenuCard';
 import { SavedMenuDisplay } from './SavedMenuDisplay';
 import { ActionButton } from '../ActionButtons';
 import './SaveMenu.css'
-import { BACKEND_URL } from '../../App'; 
+import { BACKEND_URL } from '../../config'; 
 
 type RecipeApiResponse = {
     id: number;

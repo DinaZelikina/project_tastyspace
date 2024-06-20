@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './UsersHistory.css';
-import { BACKEND_URL } from '../../App'; 
+import { BACKEND_URL } from '../../config'; 
 
 type User = {
     id: number;

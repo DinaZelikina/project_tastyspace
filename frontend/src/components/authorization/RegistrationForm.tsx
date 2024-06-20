@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import './AuthModal.css';
-import { BACKEND_URL } from '../../App';
+import { BACKEND_URL } from '../../config';
 
 type RegistrationFormProps = {
     role: string;

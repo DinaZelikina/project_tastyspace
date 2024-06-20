@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import './SaveMenu.css'
-import { BACKEND_URL } from '../../App'; 
+import { BACKEND_URL } from '../../config'; 
 
 type SaveMenuModalProps = {
     show: boolean;

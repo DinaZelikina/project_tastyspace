@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './RecipeDetails.css';
-import { BACKEND_URL } from '../../App'; 
+import { BACKEND_URL } from '../../config'; 
 
 type Ingredient = {
     name: string;

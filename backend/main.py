@@ -25,9 +25,9 @@ app.register_blueprint(recipes_bp)
 app.register_blueprint(menu_bp)
 app.register_blueprint(admin_bp)
 
-@app.before_first_request
-def initialize_database():
-    init_empty_db()
+# @app.before_first_request
+# def initialize_database():
+#     init_empty_db()
 
 if __name__ == "__main__":
     app.run()

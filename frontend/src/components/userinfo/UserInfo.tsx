@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import './UserInfo.css';
-import { BACKEND_URL } from '../../App';
+import { BACKEND_URL } from '../../config';
 
 export type User = {
   username: string;

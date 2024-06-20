@@ -13,7 +13,7 @@ import About from './about/About';
 import ContactUs from './contact/ContactUs';
 import { ActionButton } from './ActionButtons';
 import UsersHistory from './history/UsersHistory';
-import { BACKEND_URL } from '../App';
+import { BACKEND_URL } from '../config';
 
 export type UserOptionsProps = {
   setUserToken: (userId: string | null) => void;

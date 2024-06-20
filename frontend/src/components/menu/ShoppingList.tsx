@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './ShoppingList.css';
 import { ActionButton } from '../ActionButtons';
-import { BACKEND_URL } from '../../App'; 
+import { BACKEND_URL } from '../../config'; 
 
 type Ingredient = {
     name: string;

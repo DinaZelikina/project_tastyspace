@@ -5,7 +5,7 @@ import RecipeList from './RecipeList';
 import SaveMenuModal from './SaveMenuModal'; 
 import { ActionButton } from '../ActionButtons';
 import './CreateMenuQuestions.css';
-import { BACKEND_URL } from '../../App'; 
+import { BACKEND_URL } from '../../config'; 
 
 const categoryMap: Record<string, string> = {
     'Weeknight dinner': 'weeknight',

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './ContactUs.css';
-import { BACKEND_URL } from '../../App';
+import { BACKEND_URL } from '../../config';
 
 export default function ContactUs() {
   const [adminEmail, setAdminEmail] = useState<string | null>(null);

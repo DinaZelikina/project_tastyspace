@@ -3,14 +3,14 @@ import NewRecipeCard from './NewRecipeCard';
 import Moderation from './Moderation';
 import { ActionButton } from '../ActionButtons';
 import { Modal } from 'react-bootstrap';
-import { BACKEND_URL } from '../../App'; 
+import { BACKEND_URL } from '../../config'; 
 
 const defaultImageUrl = '/images/default_img.jpg';
 
 type NewRecipesProps = {
   updateActionButtons: (buttons: ActionButton[]) => void;
 };
-
+ 
 export type Ingredient = {
   index: number;
   name: string;
@@ -176,7 +176,7 @@ export default function NewRecipes({ updateActionButtons }: NewRecipesProps) {
           setShowModeratorActions(false);
           setSelectedRecipe(null);
           setRecipes(prevRecipes => prevRecipes.filter(recipe => recipe.id !== selectedRecipe!.id));
-          setShowSuccessModal(true); // Показать успешное модальное окно
+          setShowSuccessModal(true); 
         }
       })
       .catch(error => {

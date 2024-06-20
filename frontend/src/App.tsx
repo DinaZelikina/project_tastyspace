@@ -7,8 +7,7 @@ import AuthModal from './components/authorization/AuthModal ';
 import ActionButtons, { ActionButton } from './components/ActionButtons';
 import Homepage from './components/homepage/Homepage';
 import { FaRegUser } from 'react-icons/fa';
-
-export const BACKEND_URL = "http://localhost:5000";
+import { BACKEND_URL } from './config';
 
 export default function App() {
   const [userToken, setUserToken] = useState<string | null>(null);

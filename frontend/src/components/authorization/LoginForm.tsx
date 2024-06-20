@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import RegistrationForm from './RegistrationForm';
 import './AuthModal.css';
-import { BACKEND_URL } from '../../App';
+import { BACKEND_URL } from '../../config';
 
 export type UserDataProps = {
   setUserToken: (userId: string | null) => void;
