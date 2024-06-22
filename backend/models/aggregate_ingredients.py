@@ -31,7 +31,7 @@ class IngredientAggregator:
         'greenery': "Greenery",
         'sauces': "Sauces",
         'seasoning': "Seasoning",
-        'baking supplies': "Baking supplies",
+        'baking supplies': "Baking Supplies",
         'other': "Other"
     }
 
