@@ -58,12 +58,10 @@ export type RecipeDetails = {
 };
 
 type CreateMenuQuestionsProps = {
-    onClose: () => void;
-    setCurrentComponent: (component: JSX.Element | null) => void;
     updateActionButtons: (buttons: ActionButton[]) => void;
 };
 
-export default function CreateMenuQuestions({ onClose, setCurrentComponent, updateActionButtons }: CreateMenuQuestionsProps) {
+export default function CreateMenuQuestions({ updateActionButtons }: CreateMenuQuestionsProps) {
     const [dinnerCategory, setDinnerCategory] = useState<string>('');
     const [dinnerTime, setDinnerTime] = useState<string>('');
     const [cookingTime, setCookingTime] = useState<string>('');

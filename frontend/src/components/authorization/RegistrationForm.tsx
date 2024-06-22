@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState } from 'react';
 import './AuthModal.css';
 import { BACKEND_URL } from '../../config';
 
@@ -133,6 +133,16 @@ export default function RegistrationForm({ role, setUserToken }: RegistrationFor
         }
     };
 
+    const handleConfirmPasswordBlur = () => {
+        const password = passwordRef.current?.value || "";
+        const confirmPassword = confirmPasswordRef.current?.value || "";
+        if (password !== confirmPassword) {
+            setConfirmPasswordError('Passwords do not match');
+        } else {
+            setConfirmPasswordError('');
+        }
+    };
+
     const validateEmail = (email: string): boolean => {
         return /\S+@\S+\.\S+/.test(email);
     };
@@ -179,6 +189,7 @@ export default function RegistrationForm({ role, setUserToken }: RegistrationFor
             placeholder="Confirm Password" 
             ref={confirmPasswordRef} 
             required 
+            onBlur={handleConfirmPasswordBlur}
             onChange={handleConfirmPasswordChange}
             className="auth-input"
         />

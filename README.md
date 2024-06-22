@@ -49,8 +49,9 @@ Follow these steps to run the project locally:
 
 ### Database
 
-To ensure the application works correctly, load the recipe database. In the backend directory, run the following command:
+To ensure the application works correctly, load the recipe database. In the backend directory, run the following commands:
 ```bash
+flask init-db
 psql -U postgres -h localhost -d postgres -f db.sql
 ```
 Enter the postgres password when prompted.

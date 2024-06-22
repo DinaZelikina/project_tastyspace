@@ -13,7 +13,7 @@ type ShoppingListProps = {
     recipeIds: number[];
     onBackToMenu: () => void;
     updateActionButtons: (buttons: ActionButton[]) => void;
-};
+}; 
 
 const categoryOrder = [
     "Meat & Chicken",

@@ -28,6 +28,7 @@ type AddRecipeFormProps = {
 export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
     const titleRef = useRef<HTMLInputElement>(null);
     const descriptionRef = useRef<HTMLTextAreaElement>(null);
+    const fileInputRef = useRef<HTMLInputElement>(null);
     const [file, setFile] = useState<File | null>(null);
     const [ingredients, setIngredients] = useState<Ingredient[]>([{ name: '', amount: '', measurement: '' }]);
     const [instructions, setInstructions] = useState<Step[]>([{ description: '' }]);
@@ -113,13 +114,13 @@ export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
     };
 
     const handleIngredientFieldChange = () => {
-        if (ingredients.length > 0 && ingredients.some(ingredient => ingredient.name)) {
+        if (ingredients.some(ingredient => ingredient.name.trim() !== '' && ingredient.amount.trim() !== '')) {
             setIngredientError('');
         }
     };
 
     const handleInstructionFieldChange = () => {
-        if (instructions.length > 0 && instructions.some(step => step.description)) {
+        if (instructions.some(step => step.description.trim() !== '')) {
             setInstructionError('');
         }
     };
@@ -145,9 +146,9 @@ export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
             }
         }
 
-        const hasValidIngredient = ingredients.some(ingredient => ingredient.name.trim() !== '' || ingredient.amount.trim() !== '' || ingredient.measurement.trim() !== '');
+        const hasValidIngredient = ingredients.some(ingredient => ingredient.name.trim() !== '' && ingredient.amount.trim() !== '');
         if (!hasValidIngredient) {
-            setIngredientError('Please fill out the ingredients');
+            setIngredientError('Please fill out the ingredients correctly');
             hasError = true;
         } else {
             setIngredientError('');
@@ -170,7 +171,7 @@ export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
             return;
         }
 
-        const filteredIngredients = ingredients.filter(ingredient => ingredient.name.trim() !== '' || ingredient.amount.trim() !== '' || ingredient.measurement.trim() !== '');
+        const filteredIngredients = ingredients.filter(ingredient => ingredient.name.trim() !== '' && ingredient.amount.trim() !== '');
         const filteredSteps = instructions.filter(step => step.description.trim() !== '');
 
         const formData = new FormData();
@@ -208,13 +209,16 @@ export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
                 setIngredients([{ name: '', amount: '', measurement: '' }]);
                 setInstructions([{ description: '' }]);
                 setFile(null);
+                if (fileInputRef.current) {
+                    fileInputRef.current.value = '';
+                }
                 setShowModal(true); // Показать модальное окно после успешной отправки
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
     };
- 
+
     return (
         <div>
             <h3>Add a New Recipe</h3>
@@ -237,7 +241,7 @@ export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="image" className="form-label">Image:</label>
-                    <input type="file" onChange={handleFileChange} className="form-control" id="image" />
+                    <input type="file" onChange={handleFileChange} className="form-control" id="image" ref={fileInputRef} />
                 </div>
                 {ingredients.map((ingredient, index) => (
                     <div key={index} className="mb-3">

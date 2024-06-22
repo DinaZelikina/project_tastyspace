@@ -7,8 +7,8 @@ export type Ingredient = {
     index: number;
     name: string;
     amount: string;
-    measurement: string;
-    category?: string; 
+    measurement: string; 
+    category?: string;
     isMain?: boolean;
 };
 
@@ -31,7 +31,17 @@ type ModerationProps = {
     onUpdate: (recipe: Recipe) => void;
     onRejectRecipe: () => void;
     onBackToList: () => void;
-    onPublish: (moderationData: ModerationData) => void;
+    onPublish: (payload: {
+        dishType: string;
+        needSideDish: boolean;
+        cuisine: string;
+        cookingTime: number;
+        seasons: string;
+        dinnerTimes: string;
+        dinnerCategories: string;
+        ingredients: Ingredient[];
+        steps: Step[];
+    }) => void;
     updateActionButtons: (buttons: ActionButton[]) => void;
     showSuccessModal: () => void;
 };
@@ -208,7 +218,13 @@ export default function Moderation({
             dinnerCategories: dinnerCategories.join(', ')
         };
     
-        onPublish(moderationData);
+        const payload = {
+            ...moderationData,
+            ingredients: editedRecipe.ingredients,
+            steps: editedRecipe.steps
+        };
+
+        onPublish(payload);
         showSuccessModal();
         onBackToList();
     };

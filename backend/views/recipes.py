@@ -8,7 +8,7 @@ import uuid
 
 recipes_bp = Blueprint('recipes', __name__)
 
-@recipes_bp.route('/images/<filename>')
+@recipes_bp.route('/images/<filename>') 
 def uploaded_file(filename):
     return send_from_directory(current_app.config['UPLOAD_FOLDER'], filename) 
 
@@ -180,11 +180,27 @@ def publish_recipe(dish_id):
     token_data = get_jwt()
     moderator_id = token_data['sub']
     try:
+        # Update dish with moderation data
         cursor.execute('''
             UPDATE dishes SET type=%s, side_dish=%s, cuisine=%s, cooking_time=%s, category=%s, dinner_time=%s, season=%s, is_moderated=TRUE
             WHERE id=%s;
         ''', (data['dishType'], data['needSideDish'], data['cuisine'], data['cookingTime'], data['dinnerCategories'], data['dinnerTimes'], data['seasons'], dish_id))
 
+        # Update ingredients
+        for ingredient in data['ingredients']:
+            cursor.execute('''
+                UPDATE ingredients SET name=%s, amount=%s, measurement=%s, category=%s, is_main=%s 
+                WHERE dish_id=%s AND index=%s;
+            ''', (ingredient['name'], ingredient['amount'], ingredient['measurement'], ingredient.get('category', ''), ingredient.get('isMain', False), dish_id, ingredient['index']))
+
+        # Update steps
+        for step in data['steps']:
+            cursor.execute('''
+                UPDATE steps SET description=%s 
+                WHERE dish_id=%s AND index=%s;
+            ''', (step['description'], dish_id, step['index']))
+
+        # Insert moderation record
         cursor.execute('''
             INSERT INTO moderation (dish_id, moderator_id)
             VALUES (%s, %s);

@@ -74,7 +74,6 @@ export default function App() {
         <nav className="App-nav">
           {!userToken ? (
             <GuestOptions
-              showLoginForm={() => toggleRegistration('', 'login')}
               showRegistrationForm={(role: string) => toggleRegistration(role, 'register')}
               setCurrentComponent={setCurrentComponent}
               setActionButtons={setActionButtons}

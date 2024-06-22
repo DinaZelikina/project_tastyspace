@@ -4,6 +4,9 @@ from flask_jwt_extended import JWTManager
 from datetime import timedelta
 from db import init_empty_db
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from views.auth import auth_bp
 from views.recipes import recipes_bp
@@ -11,6 +14,7 @@ from views.menu import menu_bp
 from views.admin import admin_bp
 
 app = Flask(__name__)
+
 app.config.from_prefixed_env()
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=1)
 FRONTEND_URL = app.config.get("FRONTEND_URL", "http://localhost:5173")
@@ -25,8 +29,9 @@ app.register_blueprint(recipes_bp)
 app.register_blueprint(menu_bp)
 app.register_blueprint(admin_bp)
 
-@app.before_first_request
-def initialize_database():
+@app.cli.command("init-db")
+def init_db_command():
+    """Initialize the empty database."""
     init_empty_db()
 
 if __name__ == "__main__":

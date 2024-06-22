@@ -6,18 +6,15 @@ import ContactUs from './contact/ContactUs';
 import { ActionButton } from './ActionButtons';
 
 type GuestOptionsProps = {
-  showLoginForm: () => void;
   showRegistrationForm?: (role: string) => void;
   setCurrentComponent: (component: JSX.Element | null) => void; 
   setActionButtons: (buttons: ActionButton[]) => void;
 };
 
-export default function GuestOptions({ showLoginForm, setCurrentComponent, setActionButtons }: GuestOptionsProps) {
+export default function GuestOptions({ setCurrentComponent, setActionButtons }: GuestOptionsProps) {
   const handleCreateMenu = () => {
     setCurrentComponent(
       <CreateMenuQuestions 
-        onClose={() => setCurrentComponent(null)} 
-        setCurrentComponent={setCurrentComponent} 
         updateActionButtons={setActionButtons} 
         key={Date.now()} 
       />

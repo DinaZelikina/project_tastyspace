@@ -5,7 +5,7 @@ from db import get_db
 from models.matching_dishes import Menu
 from models.aggregate_ingredients import IngredientAggregator
 
-menu_bp = Blueprint('menu', __name__)
+menu_bp = Blueprint('menu', __name__) 
 
 # Find matching dishes to users criteria
 @menu_bp.route('/createMenu', methods=['POST'])

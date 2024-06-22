@@ -48,8 +48,6 @@ export default function UserOptions({ handleLogout, toggleRegistration, userRole
   const handleCreateMenu = () => {
     setCurrentComponent(
       <CreateMenuQuestions 
-        onClose={() => setCurrentComponent(null)} 
-        setCurrentComponent={setCurrentComponent} 
         updateActionButtons={setActionButtons} 
         key={Date.now()} 
       />
@@ -81,15 +79,15 @@ export default function UserOptions({ handleLogout, toggleRegistration, userRole
       setActionButtons([]);
     },
     showNewRecipes: () => {
-      setCurrentComponent(<NewRecipes updateActionButtons={setActionButtons}/>);
+      setCurrentComponent(<NewRecipes updateActionButtons={setActionButtons} key={Date.now()}/>);
       setActionButtons([]);
     },
     addRecipe: () => {
-      setCurrentComponent(<AddRecipeForm onAddRecipe={handleAddRecipe} />);
+      setCurrentComponent(<AddRecipeForm onAddRecipe={handleAddRecipe} key={Date.now()}/>);
       setActionButtons([]);
     },
     showUserInfo: () => {
-      setCurrentComponent(<UserInfo onUserUpdate={onUserUpdate} />);
+      setCurrentComponent(<UserInfo onUserUpdate={onUserUpdate} key={Date.now()}/>);
       setActionButtons([]);
     },
     showHelp: () => {
