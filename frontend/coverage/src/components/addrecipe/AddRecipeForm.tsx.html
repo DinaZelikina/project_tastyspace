@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.83% </span>
+                <span class="strong">93.91% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>289/308</span>
+                <span class='fraction'>293/312</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.23% </span>
+                <span class="strong">91.3% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>41/47</span>
+                <span class='fraction'>42/46</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.83% </span>
+                <span class="strong">93.91% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>289/308</span>
+                <span class='fraction'>293/312</span>
             </div>
         
             
@@ -371,7 +371,11 @@
 <a name='L306'></a><a href='#L306'>306</a>
 <a name='L307'></a><a href='#L307'>307</a>
 <a name='L308'></a><a href='#L308'>308</a>
-<a name='L309'></a><a href='#L309'>309</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L309'></a><a href='#L309'>309</a>
+<a name='L310'></a><a href='#L310'>310</a>
+<a name='L311'></a><a href='#L311'>311</a>
+<a name='L312'></a><a href='#L312'>312</a>
+<a name='L313'></a><a href='#L313'>313</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -399,6 +403,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">45x</span>
 <span class="cline-any cline-yes">45x</span>
 <span class="cline-any cline-yes">45x</span>
 <span class="cline-any cline-yes">45x</span>
@@ -487,8 +492,8 @@
 <span class="cline-any cline-yes">45x</span>
 <span class="cline-any cline-yes">45x</span>
 <span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">45x</span>
 <span class="cline-any cline-yes">45x</span>
@@ -520,11 +525,11 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
@@ -564,6 +569,9 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -682,8 +690,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useRef, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import './AddRecipeForm.css';
-import { BACKEND_URL } from '../../App';
-&nbsp;
+import { BACKEND_URL } from '../../config';
 &nbsp;
 type Ingredient = {
     name: string;
@@ -706,9 +713,11 @@ type AddRecipeFormProps = {
     onAddRecipe: (recipeData: RecipeData) =&gt; void;
 };
 &nbsp;
+// Component for adding a new recipe
 export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
     const titleRef = useRef&lt;HTMLInputElement&gt;(null);
     const descriptionRef = useRef&lt;HTMLTextAreaElement&gt;(null);
+    const fileInputRef = useRef&lt;HTMLInputElement&gt;(null);
     const [file, setFile] = useState&lt;File | null&gt;(null);
     const [ingredients, setIngredients] = useState&lt;Ingredient[]&gt;([{ name: '', amount: '', measurement: '' }]);
     const [instructions, setInstructions] = useState&lt;Step[]&gt;([{ description: '' }]);
@@ -794,13 +803,13 @@ export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
     };
 &nbsp;
     const handleIngredientFieldChange = () =&gt; {
-        if (ingredients.length &gt; 0 &amp;&amp; ingredients.some(ingredient =&gt; ingredient.name)) {
+        if (ingredients.some(ingredient =&gt; ingredient.name.trim() !== '' &amp;&amp; ingredient.amount.trim() !== '')) {
             setIngredientError('');
         }
     };
 &nbsp;
     const handleInstructionFieldChange = () =&gt; {
-        if (instructions.length &gt; 0 &amp;&amp; instructions.some(step =&gt; step.description)) {
+        if (instructions.some(step =&gt; step.description.trim() !== '')) {
             setInstructionError('');
         }
     };
@@ -826,9 +835,9 @@ export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
 <span class="cstat-no" title="statement not covered" >            }</span>
         }
 &nbsp;
-        const hasValidIngredient = ingredients.some(ingredient =&gt; ingredient.name.trim() !== '' || ingredient.amount.trim() !== '' || ingredient.measurement.trim() !== '');
+        const hasValidIngredient = ingredients.some(ingredient =&gt; ingredient.name.trim() !== '' &amp;&amp; ingredient.amount.trim() !== '');
         if (!hasValidIngredient) {
-            setIngredientError('Please fill out the ingredients');
+            setIngredientError('Please fill out the ingredients correctly');
             hasError = true;
         } else {
             setIngredientError('');
@@ -851,7 +860,7 @@ export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
             return;
         }
 &nbsp;
-        const filteredIngredients = ingredients.filter(ingredient =&gt; ingredient.name.trim() !== <span class="branch-0 cbranch-no" title="branch not covered" >'' || ingredient.amount.trim() !== <span class="branch-0 cbranch-no" title="branch not covered" >'' || i</span>ngredient.measurement.trim() !== '');</span>
+        const filteredIngredients = ingredients.filter(ingredient =&gt; ingredient.name.trim() !== '' &amp;&amp; ingredient.amount.trim() !== '');
         const filteredSteps = instructions.filter(step =&gt; step.description.trim() !== '');
 &nbsp;
         const formData = new FormData();
@@ -889,7 +898,10 @@ export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
                 setIngredients([{ name: '', amount: '', measurement: '' }]);
                 setInstructions([{ description: '' }]);
                 setFile(null);
-                setShowModal(true); // Показать модальное окно после успешной отправки
+                if (fileInputRef.current) {
+                    fileInputRef.current.value = '';
+                }
+                setShowModal(true); 
             })
             .catch((error) =&gt; {
 <span class="cstat-no" title="statement not covered" >                console.error('Error:', error);</span>
@@ -918,7 +930,7 @@ export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
                 &lt;/div&gt;
                 &lt;div className="mb-3"&gt;
                     &lt;label htmlFor="image" className="form-label"&gt;Image:&lt;/label&gt;
-                    &lt;input type="file" onChange={handleFileChange} className="form-control" id="image" /&gt;
+                    &lt;input type="file" onChange={handleFileChange} className="form-control" id="image" ref={fileInputRef} /&gt;
                 &lt;/div&gt;
                 {ingredients.map((ingredient, index) =&gt; (
                     &lt;div key={index} className="mb-3"&gt;
@@ -994,7 +1006,7 @@ export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-06-18T15:29:41.613Z
+                at 2024-06-22T21:58:05.406Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

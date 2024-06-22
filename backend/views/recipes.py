@@ -47,7 +47,7 @@ def add_recipe():
             amount = request.form.get(f'ingredients[{i}][amount]')
             measurement = request.form.get(f'ingredients[{i}][measurement]', '')
             if measurement == '-':
-                measurement = ''
+                measurement = '' 
             index = request.form.get(f'ingredients[{i}][index]', type=int) + 1
             cursor.execute('''
                 INSERT INTO ingredients (index, name, amount, measurement, dish_id) 

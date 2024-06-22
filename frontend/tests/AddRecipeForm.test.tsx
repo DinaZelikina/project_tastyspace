@@ -16,8 +16,8 @@ describe('AddRecipeForm', () => {
         );
         const titleInput = screen.getByLabelText('Title:');
         const descriptionInput = screen.getByLabelText('Description:');
-        const ingredientNameInput = screen.getByPlaceholderText('Ingredient name');
-        const ingredientAmountInput = screen.getByPlaceholderText('Amount');
+        const ingredientNameInput = screen.getAllByPlaceholderText('Ingredient name')[0];
+        const ingredientAmountInput = screen.getAllByPlaceholderText('Amount')[0];
         const ingredientMeasurementInput = screen.getByDisplayValue('-');
         const stepInput = screen.getByLabelText('Step 1');
         const submitButton = screen.getByText('Submit Recipe');
@@ -70,7 +70,7 @@ describe('AddRecipeForm', () => {
         fireEvent.submit(submitButton);
 
         await waitFor(() => {
-            const error = screen.queryByText('Please fill out the ingredients');
+            const error = screen.queryByText('Please fill out the ingredients correctly');
             expect(error).toBeInTheDocument();
         });
     });
@@ -98,8 +98,8 @@ describe('AddRecipeForm', () => {
 
         const titleInput = screen.getByLabelText('Title:');
         const descriptionInput = screen.getByLabelText('Description:');
-        const ingredientNameInput = screen.getByPlaceholderText('Ingredient name');
-        const ingredientAmountInput = screen.getByPlaceholderText('Amount');
+        const ingredientNameInput = screen.getAllByPlaceholderText('Ingredient name')[0];
+        const ingredientAmountInput = screen.getAllByPlaceholderText('Amount')[0];
         const ingredientMeasurementInput = screen.getByDisplayValue('-');
         const stepInput = screen.getByLabelText('Step 1');
         const submitButton = screen.getByText('Submit Recipe');

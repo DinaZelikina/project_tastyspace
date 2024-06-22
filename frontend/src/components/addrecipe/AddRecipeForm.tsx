@@ -212,7 +212,7 @@ export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
                 if (fileInputRef.current) {
                     fileInputRef.current.value = '';
                 }
-                setShowModal(true); // Показать модальное окно после успешной отправки
+                setShowModal(true); 
             })
             .catch((error) => {
                 console.error('Error:', error);

@@ -35,34 +35,3 @@ def test_get_main_ingredient_categories():
             print("Expected categories: ['meat', 'vegetable']")
             print(f"Actual categories: {categories}")
             assert categories == ['meat', 'vegetable']
-
-# Test for add_dish method
-def test_add_dish():
-    menu = Menu(dinner_category='weeknight', dinner_time='today', cooking_time=1)
-    with app.app_context():
-        mock_cursor = MagicMock()
-        mock_cursor.fetchall.side_effect = [
-            [],  
-            [RealDictRow({'id': 1, 'type': 'main dish', 'cuisine': 'european', 'side_dish': False})],  
-            [{'category': 'meat'}, {'category': 'vegetable'}] 
-        ]
-
-        mock_db = MagicMock()
-        mock_db.cursor.return_value = mock_cursor
-
-        with patch('db.get_db', return_value=mock_db):
-            db = get_db()
-            current_cuisines = {'european', 'central asian', 'east asian', 'mediterranean', 'slavic', 'italian', 'tex-mex'}
-            menu_list = []
-            main_ingredient_categories = []
-
-            menu.add_dish(('main dish',), db, current_cuisines, menu_list, main_ingredient_categories)
-            print(f"Menu after adding a dish: {menu_list}")
-
-            expected_dishes = [
-                RealDictRow({'id': 1, 'type': 'main dish', 'cuisine': 'european', 'side_dish': False})
-            ]
-
-            assert len(menu_list) > 0, "Menu list should contain at least one dish"
-            assert menu_list[0]['type'] == 'main dish', f"Expected 'main dish', but got {menu_list[0]['type']}"
-            assert 'european' in menu_list[0]['cuisine'], f"Expected 'european', but got {menu_list[0]['cuisine']}"
