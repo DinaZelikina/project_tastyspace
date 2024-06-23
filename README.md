@@ -31,7 +31,7 @@ Follow these steps to run the project locally:
     pip install -r requirements.txt
     ```
 
-3. Copy the example environment file and configure it as needed:
+3. Copy the example environment file and configure it as needed, if necessary:
     ```bash
     cp example.env .env
     ```
