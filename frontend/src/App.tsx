@@ -83,7 +83,6 @@ export default function App() {
               setUserToken={setUserToken}
               handleLogout={handleLogout}
               toggleRegistration={toggleRegistration}
-              userRole={userRole}
               setCurrentComponent={setCurrentComponent}
               setActionButtons={setActionButtons}
               onUserUpdate={updateUserInfo}

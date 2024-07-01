@@ -19,13 +19,12 @@ export type UserOptionsProps = {
   setUserToken: (userId: string | null) => void;
   handleLogout: () => void;
   toggleRegistration: (role: string, formType: string) => void;
-  userRole: UserRole;
   setCurrentComponent: (component: JSX.Element | null) => void;
   setActionButtons: (buttons: ActionButton[]) => void;
   onUserUpdate: (user: any) => void;
 }
 
-export default function UserOptions({ handleLogout, toggleRegistration, userRole, setCurrentComponent, setActionButtons, onUserUpdate }: UserOptionsProps) {
+export default function UserOptions({ handleLogout, toggleRegistration, setCurrentComponent, setActionButtons, onUserUpdate }: UserOptionsProps) {
   const [userData, setUserData] = useState<any>(null);
 
   useEffect(() => {

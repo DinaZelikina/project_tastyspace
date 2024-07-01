@@ -33,6 +33,3 @@ app.register_blueprint(admin_bp)
 def init_db_command():
     """Initialize the empty database."""
     init_empty_db()
-
-if __name__ == "__main__":
-    app.run()
