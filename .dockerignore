@@ -1,0 +1,30 @@
+# Игнорируем все файлы и папки по умолчанию
+**
+
+# Разрешаем файлы, необходимые для сборки фронтенда
+!frontend/**
+!frontend/package.json
+!frontend/package-lock.json
+!frontend/src/
+!frontend/public/
+
+# Добавляем файлы и папки, необходимые для сборки и запуска Flask-приложения
+!backend/
+!backend/app/
+!backend/app/main.py  # Пример основного файла вашего приложения
+!backend/requirements.txt
+
+# Общие файлы, которые должны быть включены в контекст сборки
+!docker-compose.yml
+!Dockerfile
+
+# Игнорируем файлы разработки и временные файлы
+**/*.log
+**/*.env
+**/node_modules
+**/dist
+**/.git
+**/.vscode
+**/.idea
+**/tmp
+**/temp
